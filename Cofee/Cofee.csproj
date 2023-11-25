@@ -28,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Views\" />
     <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
