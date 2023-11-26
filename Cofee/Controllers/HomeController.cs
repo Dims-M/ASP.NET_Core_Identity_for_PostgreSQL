@@ -1,6 +1,8 @@
 using Cofee.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Net.Sockets;
+using System.Net;
 
 namespace Cofee.Controllers
 {
@@ -30,5 +32,33 @@ namespace Cofee.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        /// <summary>
+        /// ¬озвращает Ip машины, выполн€ющей запрос
+        /// </summary>
+        /// <returns>Ip машины, выполн€ющей запрос</returns>
+        /// <exception cref="Exception">Ќевозможно получить Ip</exception>
+        private string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.MapToIPv4().ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
+        }
+
+        /// <summary>
+        /// ѕолучить наименование хоста.
+        /// </summary>
+        private string GetHostName()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            return host.HostName;
+        }
+
     }
 }

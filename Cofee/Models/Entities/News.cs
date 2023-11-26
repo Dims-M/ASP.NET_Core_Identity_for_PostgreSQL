@@ -13,6 +13,11 @@ namespace Cofee.Models.Entities
         public string Title { get; set; }
 
         public string Text { get; set; }
+        /// <summary>
+        /// Коментарии к новости.
+        /// </summary>
+        public string Сomments { get; set; }
+        public string Tags { get; set; }
 
         public DateTime Date { get; set; }
 
@@ -22,5 +27,10 @@ namespace Cofee.Models.Entities
         public DateTime CreateDate { get; set; }
 
         public bool IsActive { get; set; }
+
+        /// <summary>
+        /// Являтся ли удаленным
+        /// </summary>
+        public bool IsDelite { get; set; }
     }
 }
