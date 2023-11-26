@@ -18,7 +18,9 @@ namespace Cofee
                 options.UseNpgsql(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //указывающий, требуется ли для входа подтвержденная
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
@@ -46,6 +48,32 @@ namespace Cofee
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.MapControllerRoute(
+                name: "admin",
+                 // pattern: "admin/{*id}"
+                 //defaults: new { controller = "admin", action = "Index" }
+                 pattern: "{controller=Admin}/{action=Index}/{id?}");
+
+
+            //app.MapControllerRoute("admin", "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
+            //app.MapControllerRoute(
+            //name: "Admin",// or name: "areas",
+            //pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
+            //регистриуруем нужные нам маршруты (ендпоинты)
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    // endpoints.MapControllerRoute(name: "api", "api/{controller=UploadFile}");
+            //    endpoints.MapControllerRoute("admin", "{area:exists}/{controller=Home}/{action=admin}/{id?}");
+            //    endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+
+            //    endpoints.MapControllerRoute("api", "api/{controller=Values}");
+            //    endpoints.MapRazorPages();
+            //    endpoints.MapControllers(); //Для работы с апи
+            //    //endpoints.MapBlazorHub();  // Для работы с Blaz
+            //    //endpoints.MapHub<NotificationHub>("/notification"); // подключаем точку доступа к севисам SignalR  
+            //});
+            
             app.MapRazorPages();
 
             app.Run();

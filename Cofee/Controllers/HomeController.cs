@@ -15,6 +15,7 @@ namespace Cofee.Controllers
 
         public IActionResult Index()
         {
+            var user = User.Identity;
             return View();
         }
 
