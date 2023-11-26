@@ -9,11 +9,13 @@ namespace Cofee.Areas.Admin.Controllers
         public IActionResult Index()
         {
             var user = User.Identity;
+            var userRole = User.IsInRole("Administrator");
             return View();
         }
 
         public IActionResult Users()
         {
+            var listUser = new List<string>();
             return View();
         }
     }

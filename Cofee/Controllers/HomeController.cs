@@ -16,6 +16,7 @@ namespace Cofee.Controllers
         public IActionResult Index()
         {
             var user = User.Identity;
+            var userRole = User.IsInRole("Administrator");
             return View();
         }
 
