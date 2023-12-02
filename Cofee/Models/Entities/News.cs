@@ -10,21 +10,35 @@ namespace Cofee.Models.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        public string AuthorId { get; set; }
+
+        public User Author { get; set; }
+
         public string Title { get; set; }
 
         public string Text { get; set; }
+
         /// <summary>
         /// Коментарии к новости.
         /// </summary>
         public string Сomments { get; set; }
+
         public string Tags { get; set; }
 
+        /// <summary>
+        /// Дата создания
+        /// </summary>
+        public DateTime CreateDate { get; set; }
+
+        /// <summary>
+        /// Дата публикации
+        /// </summary>
         public DateTime Date { get; set; }
 
-        public string AuthorId { get; set; }
-        public User Author { get; set; }
-
-        public DateTime CreateDate { get; set; }
+        /// <summary>
+        /// Дата обновлления
+        /// </summary>
+        public DateTime DateUpdate { get; set; }
 
         public bool IsActive { get; set; }
 

@@ -19,6 +19,8 @@ namespace Cofee.Controllers
         {
             var user = User.Identity;
             var userRole = User.IsInRole("Administrator");
+            var curentIp = GetLocalIPAddress();
+            var curentHost = GetHostName();
             return View();
         }
 

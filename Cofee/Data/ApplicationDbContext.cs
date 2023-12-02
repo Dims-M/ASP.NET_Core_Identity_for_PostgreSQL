@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Cofee.Models.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cofee.Data
@@ -9,5 +10,7 @@ namespace Cofee.Data
             : base(options)
         {
         }
+
+        public DbSet<News> News => Set<News>();
     }
 }
