@@ -3,7 +3,7 @@
 namespace Cofee.Models
 {
     /// <summary>
-    /// Модель DTO описыающая пользователя системы.
+    /// Модель DTO описыающая пользователя системы. Наслеуется от IdentityUser
     /// </summary>
     public class User : IdentityUser
     {

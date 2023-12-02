@@ -13,6 +13,7 @@ namespace Cofee.Data
         }
 
         public DbSet<News> News => Set<News>();
+        public DbSet<User> Users => Set<User>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
