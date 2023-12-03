@@ -28,5 +28,25 @@ namespace Cofee.Repositories
             return await _applicationDbContext.News.ToListAsync();
         }
 
+        /// <summary>
+        /// Получаем новость по id
+        /// </summary>
+        /// <returns></returns>
+        public async Task<News> GetNewsIdAsync(int idNews)
+        {
+            var res = await _applicationDbContext.News.AsNoTracking().AsQueryable().FirstOrDefaultAsync(x => x.Id == idNews);
+            return res;
+        }
+
+        /// <summary>
+        /// Получаем новость по имени
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<News>> GetNewsNameAsync(string NameNews)
+        {
+            var res = await _applicationDbContext.News.Where(n => n.Title.Contains(NameNews)).ToListAsync(); ;
+            return res;
+        }
+
     }
 }
