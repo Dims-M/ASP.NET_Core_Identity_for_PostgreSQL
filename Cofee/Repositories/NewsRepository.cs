@@ -25,7 +25,7 @@ namespace Cofee.Repositories
         /// <returns></returns>
         public async Task<List<News>> GetNewsAsync()
         {
-            return await _applicationDbContext.News.ToListAsync();
+            return await _applicationDbContext.News.OrderBy(n=>n.Id).ToListAsync();
         }
 
         /// <summary>
