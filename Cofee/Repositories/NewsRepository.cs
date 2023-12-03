@@ -44,7 +44,7 @@ namespace Cofee.Repositories
         /// <returns></returns>
         public async Task<List<News>> GetNewsNameAsync(string NameNews)
         {
-            var res = await _applicationDbContext.News.Where(n => n.Title.Contains(NameNews)).ToListAsync(); ;
+            var res = await _applicationDbContext.News.AsNoTracking().AsQueryable().Where(n => n.Title.Contains(NameNews)).ToListAsync(); ;
             return res;
         }
 

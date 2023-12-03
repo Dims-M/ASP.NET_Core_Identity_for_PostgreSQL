@@ -27,8 +27,18 @@ namespace Cofee.Areas.Admin.Controllers
         /// <returns></returns>
         public IActionResult News()
         {
+            var listNews = _newsRepository.GetNewsAsync().Result;
+            return View(listNews);
+        }
+
+        /// <summary>
+        /// Создание новости
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult CeateNews()
+        {
             var listNews = _newsRepository.GetNewsAsync();
-            return View();
+            return View(listNews);
         }
 
 
