@@ -1,5 +1,6 @@
 using Cofee.Data;
 using Cofee.Models;
+using Cofee.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -24,6 +25,9 @@ namespace Cofee
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+
+            //Подключаем репозитории
+            builder.Services.AddTransient<NewsRepository>();
 
             var app = builder.Build();
 
