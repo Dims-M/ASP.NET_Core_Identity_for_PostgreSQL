@@ -7,6 +7,11 @@ namespace Cofee.Models
     /// </summary>
     public class User : IdentityUser
     {
+        public User(DateTime created)
+        {
+            Created = created;
+        }
+
         public DateTime Created { get; set; }
     }
 }
