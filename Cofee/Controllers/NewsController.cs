@@ -22,9 +22,9 @@ namespace Cofee.Controllers
             _newsRepository = newsRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var news = _newsRepository.GetOpenNewsAsync().Result;
+            var news = await _newsRepository.GetOpenNewsAsync();
             return View(news);
         }
     }
