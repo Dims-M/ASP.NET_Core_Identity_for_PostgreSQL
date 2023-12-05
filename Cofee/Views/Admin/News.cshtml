@@ -13,7 +13,7 @@
     <hr />
     <br />
 
-    <table cellpadding="10">
+    <table cellpadding="13">
         <tr>
             <th>Заголовок Post</th>
             <th>Содержимое</th>
@@ -34,21 +34,34 @@
             {
                 <tr>
                     <td>@item.Title</td>
-                    @if (item.Text.Length >10)
+                    @if (item.Text.Length >30)
                     {
-                      <div class="collapse" id="collapseExample">
+                        <td>
+                            <details>
+                                <summary><b> @item.Text.Substring(0, 20) </b></summary>
+                                 @item.Text
+                          </details>
+                        </td>
+                    }
+                     @if (item.Text.Length < 20){
+                        <td>@item.Text</td>
+                    }
+                  @*   <div class="collapse" id="collapseExample">
                         <div class="card card-body">
-                        <td>@item.Text</td>
+                            @item.Text
                         </div>
-                     </div>
-                    }
-                     @if (item.Text.Length < 10){
-                        <td>@item.Text</td>
-                    }
+                    </div> *@
                     <td>@item.DatePublication.ToString("yyyy.MM.dd HH:mm")</td>
                     <td>@item.AuthorId</td>
                     <td>@item.Сomments</td>
-                    <td>@item.Urls</td>
+                    @if (item.Urls!=null)
+                    {
+                       @foreach (var itemurl in item.Urls)
+                        {
+                          <td>@itemurl</td>
+                        }
+                    }
+                    <td>  @item.Urls</td>
                     <td>@item.CreateDate.ToString("yyyy.MM.dd HH:mm")</td>
                     <td>@item.DateUpdate.ToString("yyyy.MM.dd HH:mm")</td>
                     <td>@item.IsActive</td>
