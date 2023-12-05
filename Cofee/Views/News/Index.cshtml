@@ -1,10 +1,60 @@
 ﻿@* @model News  *@
 @{
-    ViewData["Title"] = "News";
+    ViewData["Title"] = "Новости";
 }
 <h1>@ViewData["Новости"]</h1>
 
-<!-- start page title -->
+
+<div>
+    <h1 class="display-4">Список новостей</h1>
+
+    <a href="/admin/news/createNews" role="button" class="btn btn-primary">Create news</a>
+
+    <br />
+    <hr />
+    <br />
+
+    <table cellpadding="10">
+        <tr>
+            <th>Заголовок Post</th>
+            <th>Содержимое</th>
+            <th>Дата публикации</th>
+           @*  <th>ID Автора</th> *@
+           @*  <th>Коментарии к новости</th>
+            <th>Ссылки новсти</th>
+            <th>Дата создани</th> *@
+           @*  <th>Дата обновления</th>
+            <th>Активная(включенная)</th>
+            <th>Удаленная(не видна ни кому)</th> *@
+            <th></th>
+            <th></th>
+        </tr>
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.Text</td>
+                    <td>@item.DatePublication.ToString("yyyy.MM.dd HH:mm")</td>
+                   @*  <td>@item.AuthorId</td>
+                    <td>@item.Сomments</td>
+                    <td>@item.Urls</td>
+                    <td>@item.CreateDate.ToString("yyyy.MM.dd HH:mm")</td>
+                    <td>@item.DateUpdate.ToString("yyyy.MM.dd HH:mm")</td>
+                    <td>@item.IsActive</td>
+                    <td>@item.IsDelite</td> *@
+                    @* <td><a href="/admin/news/edit/@item.Id">edit</a></td>
+                    <td><a href="/admin/news/delete/@item.Id">delete</a></td> *@
+                </tr>
+            }
+        }
+    </table>
+</div>
+
+
+
+<!-- 
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
@@ -25,4 +75,4 @@
         </div>
     </div>
 </div>
-<!-- end page title -->
+ -->
