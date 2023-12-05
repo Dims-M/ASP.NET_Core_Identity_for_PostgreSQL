@@ -55,10 +55,13 @@ namespace Cofee
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.MapControllerRoute(
-                name: "admin",
-                 // pattern: "admin/{*id}"
-                 //defaults: new { controller = "admin", action = "Index" }
-                 pattern: "{controller=Admin}/{action=Index}/{id?}");
+               name: "default",
+               pattern: "{controller=Home}/{action=Index}/{id?}");
+            //app.MapControllerRoute(
+            //    name: "admin",
+            //     // pattern: "admin/{*id}"
+            //     //defaults: new { controller = "admin", action = "Index" }
+            //     pattern: "{controller=Admin}/{action=Index}/{id?}");
 
 
             //app.MapControllerRoute("admin", "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
@@ -78,7 +81,7 @@ namespace Cofee
             //    //endpoints.MapBlazorHub();  // Для работы с Blaz
             //    //endpoints.MapHub<NotificationHub>("/notification"); // подключаем точку доступа к севисам SignalR  
             //});
-            
+
             app.MapRazorPages();
 
             app.Run();
