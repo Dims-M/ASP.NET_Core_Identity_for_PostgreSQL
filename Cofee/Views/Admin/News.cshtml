@@ -58,10 +58,13 @@
                     {
                        @foreach (var itemurl in item.Urls)
                         {
-                          <td>@itemurl</td>
+                            <td>@itemurl</td>
                         }
                     }
-                    <td>  @item.Urls</td>
+                    @if (item.Urls == null)
+                    {
+                        <td> ""</td>
+                    }
                     <td>@item.CreateDate.ToString("yyyy.MM.dd HH:mm")</td>
                     <td>@item.DateUpdate.ToString("yyyy.MM.dd HH:mm")</td>
                     <td>@item.IsActive</td>
