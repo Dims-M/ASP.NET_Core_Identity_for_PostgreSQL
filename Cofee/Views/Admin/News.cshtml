@@ -34,7 +34,17 @@
             {
                 <tr>
                     <td>@item.Title</td>
-                    <td>@item.Text</td>
+                    @if (item.Text.Length >10)
+                    {
+                      <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                        <td>@item.Text</td>
+                        </div>
+                     </div>
+                    }
+                     @if (item.Text.Length < 10){
+                        <td>@item.Text</td>
+                    }
                     <td>@item.DatePublication.ToString("yyyy.MM.dd HH:mm")</td>
                     <td>@item.AuthorId</td>
                     <td>@item.Сomments</td>
