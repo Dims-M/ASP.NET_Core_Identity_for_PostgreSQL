@@ -12,7 +12,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Cofee.Models;
-using Cofee.Models;
 
 namespace Cofee.Areas.Identity.Pages.Account
 {

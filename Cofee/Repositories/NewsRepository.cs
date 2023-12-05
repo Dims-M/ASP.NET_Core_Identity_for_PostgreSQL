@@ -20,12 +20,21 @@ namespace Cofee.Repositories
         }
 
         /// <summary>
-        /// Получаем список новостей
+        /// Получаем список всех новостей из БД
         /// </summary>
         /// <returns></returns>
         public async Task<List<News>> GetNewsAsync()
         {
-            return await _applicationDbContext.News.OrderBy(n=>n.Id).ToListAsync();
+            return await _applicationDbContext.News.OrderBy(n=>n.Id).AsNoTracking().ToListAsync();
+        }
+
+        /// <summary>
+        /// Получаем список всех открытых, незабаненых новостей из БД
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<News>> GetOpenNewsAsync()
+        {
+            return await _applicationDbContext.News.Where(n=>n.IsDelite!=true & n.IsActive !=false ).OrderBy(n => n.Id).AsNoTracking().ToListAsync();
         }
 
         /// <summary>

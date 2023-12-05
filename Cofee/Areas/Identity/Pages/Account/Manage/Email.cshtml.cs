@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Cofee.Models;
-using Cofee.Models;
 
 namespace Cofee.Areas.Identity.Pages.Account.Manage
 {

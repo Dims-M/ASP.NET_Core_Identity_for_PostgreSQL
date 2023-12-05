@@ -1,0 +1,28 @@
+﻿@* @model News  *@
+@{
+    ViewData["Title"] = "News";
+}
+<h1>@ViewData["Новости"]</h1>
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+
+            <h4 class="page-title">News</h4>
+
+            <ul>
+                @if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <li>
+                            Title: <span>@item.Title</span> Text: <span>@item.Text</span> Date: <span>@item.DatePublication.ToString("yyyy.MM.dd HH:mm")</span>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
