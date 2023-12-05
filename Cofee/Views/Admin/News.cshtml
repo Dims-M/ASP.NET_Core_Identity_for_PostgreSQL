@@ -13,7 +13,7 @@
     <hr />
     <br />
 
-    <table cellpadding="13">
+    <table cellpadding="12">
         <tr>
             <th>Заголовок Post</th>
             <th>Содержимое</th>
@@ -34,7 +34,7 @@
             {
                 <tr>
                     <td>@item.Title</td>
-                    @if (item.Text.Length >30)
+                    @if (@item.Text.Length >=30)
                     {
                         <td>
                             <details>
@@ -43,30 +43,56 @@
                           </details>
                         </td>
                     }
-                     @if (item.Text.Length < 20){
+                   @if(item.Text.Length <= 20){
                         <td>@item.Text</td>
                     }
-                  @*   <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
-                            @item.Text
-                        </div>
-                    </div> *@
-                    <td>@item.DatePublication.ToString("yyyy.MM.dd HH:mm")</td>
-                    <td>@item.AuthorId</td>
-                    <td>@item.Сomments</td>
-                    @if (item.Urls!=null)
+                    @if (string.IsNullOrWhiteSpace(@item.Text))
                     {
-                       @foreach (var itemurl in item.Urls)
+                        <td>""</td>
+                    }
+                    @if (item.Text ==  null)
+                    {
+                        <td>""</td>
+                    }
+                    <td>@item.DatePublication.ToString("yyyy.MM.dd HH:mm")</td>
+
+                    @if (item.AuthorId != null)
+                    {
+                        <td>@item.AuthorId</td>
+                    }
+                    @if (item.AuthorId == null)
+                    {
+                        <td>""</td>
+                    }
+
+                    @if (string.IsNullOrWhiteSpace(@item.Сomments))
+                    {
+                        <td>""</td>
+                    }
+                    @if (@item.Сomments != null)
+                    {
+                        <td>@item.Сomments</td>
+                    }
+                     
+
+                    @if (@item.Urls!=null)
+                    {
+                       @foreach (var itemurl in @item.Urls)
                         {
                             <td>@itemurl</td>
                         }
                     }
-                    @if (item.Urls == null)
+                    @if (@item.Urls == null)
                     {
-                        <td> ""</td>
+                        <td>@item.Urls</td>
                     }
+                    @if (@item.Urls.Count == 0)
+                        {
+                            <td>@item.Urls</td>
+                        }
+                    @* int z = x < y ? (x+y) : (x-y); *@
                     <td>@item.CreateDate.ToString("yyyy.MM.dd HH:mm")</td>
-                    <td>@item.DateUpdate.ToString("yyyy.MM.dd HH:mm")</td>
+                    <td>@item.DateUpdate.ToString("yyyy.MM.dd HH:mm"))</td>
                     <td>@item.IsActive</td>
                     <td>@item.IsDelite</td>
                     <td><a href="/admin/news/edit/@item.Id">edit</a></td>

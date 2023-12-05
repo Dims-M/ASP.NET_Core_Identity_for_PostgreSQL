@@ -43,6 +43,15 @@ namespace Cofee.Data
             //   .Entity<News>()
             //   .Property(e => e.DateUpdate)
             //   .HasDefaultValueSql("now()");
+            modelBuilder
+                .Entity<News>()
+                .Property(e => e.Сomments)
+                .HasDefaultValue("");
+
+            //modelBuilder
+            //   .Entity<News>()
+            //   .Property(e => e.Urls)
+            //   .HasDefaultValue(new());
 
             modelBuilder
                 .Entity<News>()

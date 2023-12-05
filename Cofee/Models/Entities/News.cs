@@ -43,7 +43,7 @@ namespace Cofee.Models.Entities
         /// <summary>
         /// Сылки но внещние сайти
         /// </summary>
-        public string[]? Urls { get; set; }
+        public List<string>? Urls { get; set; } = new();
 
         /// <summary>
         /// Дата создания

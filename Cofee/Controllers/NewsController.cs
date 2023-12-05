@@ -23,11 +23,13 @@ namespace Cofee.Controllers
             _newsRepository = newsRepository;
             _logger = logger;
         }
-
+       
         public async Task<IActionResult> Index()
         {
-            _logger.LogInformation("Запрос новостей");
+            
+           _logger.LogInformation("Запрос новостей");
             var news = await _newsRepository.GetOpenNewsAsync();
+            
             return View(news);
         }
     }
