@@ -1,6 +1,8 @@
-﻿using Cofee.Repositories;
+﻿using Cofee.Models.Entities;
+using Cofee.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Cofee.Areas.Admin.Controllers
 {
@@ -35,13 +37,35 @@ namespace Cofee.Areas.Admin.Controllers
         /// Создание новости
         /// </summary>
         /// <returns></returns>
-        public IActionResult CeateNews()
+        [Route("/admin/news/createNews")]
+        [HttpGet]
+        public async Task<ActionResult> CreateNews()
         {
-            var listNews = _newsRepository.GetNewsAsync();
-            return View(listNews);
+            return View();
         }
 
+        /// <summary>
+        /// Создание новости
+        /// </summary>
+        /// <param name="news">Обьект DTO с формы</param>
+        /// <returns></returns>
+        [Route("/admin/news/createNews")]
+        [HttpPost]
+        public async Task<ActionResult> Create(News news)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            if (!string.IsNullOrEmpty(userId))
+            {
+                news.AuthorId = userId;
+
+                news.DatePublication = DateTime.SpecifyKind(news.DatePublication, DateTimeKind.Utc);
+
+                var result = await _newsRepository.CreateNewsAsync(news);
+            }
+
+            return Redirect("/Admin/News");
+        }
         /// <summary>
         /// Получаем всех пользователей
         /// </summary>

@@ -57,5 +57,58 @@ namespace Cofee.Repositories
             return res;
         }
 
+
+        public async Task<List<News>> GetOnlyActiveNewsAsync()
+        {
+            return await _applicationDbContext.News.Where(x => x.IsActive).ToListAsync();
+        }
+
+        public async Task<News> GetOneNewsAsync(int id)
+        {
+            return await _applicationDbContext.News.Where(x => x.Id == id).FirstOrDefaultAsync();
+        }
+
+        /// <summary>
+        /// Создание новостей
+        /// </summary>
+        /// <param name="news">DTO c формы</param>
+        /// <returns></returns>
+        public async Task<News> CreateNewsAsync(News news)
+        {
+            _applicationDbContext.News.Add(news);
+            try
+            {
+                await _applicationDbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return news;
+        }
+
+        public async Task<News> UpdateNewsAsync(News news)
+        {
+            var item = await _applicationDbContext.News.Where(x => x.Id == news.Id).FirstOrDefaultAsync();
+
+            item.Title = news.Title;
+            item.Text = news.Text;
+            item.DatePublication = news.DatePublication;
+            item.IsActive = news.IsActive;
+
+            await _applicationDbContext.SaveChangesAsync();
+
+            return item;
+        }
+
+        public async Task DeleteNewsAsync(int id)
+        {
+            var item = await _applicationDbContext.News.Where(x => x.Id == id).FirstOrDefaultAsync();
+
+            _applicationDbContext.News.Remove(item);
+            await _applicationDbContext.SaveChangesAsync();
+        }
+
     }
 }
