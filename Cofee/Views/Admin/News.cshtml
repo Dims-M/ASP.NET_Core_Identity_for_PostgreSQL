@@ -6,9 +6,11 @@
 
 <div>
     <h1 class="display-4">Список новостей</h1>
-
-    <a href="/admin/news/createNews" role="button" class="btn btn-primary">Добавить новость</a>
-
+    @* action="~/Home/Create" *@
+    <a href="/admin/news/createNews" role="button" class="btn btn-primary">Добавить новость</a> 
+    @* <ahref='@Url.Action("createNews",  role="button" class="btn btn-primary">Добавить новость</ahref>
+    <a href='@Url.Action("createNews", "Home", new { name = "Тоm", id = 10 }, null)'>Ссылка</a>
+    @Url.Action("Index", "Home") *@
     <br />
     <hr />
     <br />

@@ -38,6 +38,7 @@ namespace Cofee.Areas.Admin.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("/admin/news/createNews")]
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public async Task<ActionResult> CreateNews()
         {
@@ -49,6 +50,7 @@ namespace Cofee.Areas.Admin.Controllers
         /// </summary>
         /// <param name="news">Обьект DTO с формы</param>
         /// <returns></returns>
+        [Authorize(Roles = "Administrator")]
         [Route("/admin/news/createNews")]
         [HttpPost]
         public async Task<ActionResult> Create(News news)
