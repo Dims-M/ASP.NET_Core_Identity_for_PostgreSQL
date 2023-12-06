@@ -4,6 +4,8 @@ using Cofee.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace Cofee
 {
@@ -24,7 +26,17 @@ namespace Cofee
             builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             builder.Services.AddControllersWithViews();
+            builder.Services.AddEndpointsApiExplorer();
+            
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
 
             //Подключаем репозитории
             builder.Services.AddTransient<NewsRepository>();
@@ -50,6 +62,23 @@ namespace Cofee
 
             app.UseAuthorization();
 
+
+            // подключаем CORS
+            app.UseCors(builder => builder.AllowAnyOrigin()); //метода AllowAnyOrigin() мы указываем, что приложение может обрабатывать запросы от приложений по любым адресам.
+
+            app.UseSwagger(); // подключаем свагер
+            app.UseSwaggerUI(c =>
+            {
+
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                // var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                // c.IncludeXmlComments(xmlPath);
+            });
+
+
+            app.MapControllers(); //Для работы с апи
+
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
@@ -57,6 +86,8 @@ namespace Cofee
             app.MapControllerRoute(
                name: "default",
                pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.MapControllerRoute("api", "api/{controller=Values}");
             //app.MapControllerRoute(
             //    name: "admin",
             //     // pattern: "admin/{*id}"
