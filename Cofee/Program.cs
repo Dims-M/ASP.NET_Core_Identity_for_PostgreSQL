@@ -39,7 +39,8 @@ namespace Cofee
             });
 
             //Подключаем репозитории
-            builder.Services.AddTransient<NewsRepository>();
+            builder.Services.AddTransient<NewsRepository>(); 
+            builder.Services.AddTransient<DataUserRepository>(); 
 
             var app = builder.Build();
 

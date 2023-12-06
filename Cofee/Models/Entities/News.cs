@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cofee.Models.Entities
 {
@@ -19,7 +20,8 @@ namespace Cofee.Models.Entities
         /// Автор новости из таблички AspNetUsers
         /// </summary>
         public User Author { get; set; }
-
+       
+        [Required]
         /// <summary>
         /// Заголовок
         /// </summary>
@@ -28,6 +30,7 @@ namespace Cofee.Models.Entities
         /// <summary>
         /// Тескт новости
         /// </summary>
+        [Required]
         public string? Text { get; set; }
 
         /// <summary>

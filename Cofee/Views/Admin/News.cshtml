@@ -6,11 +6,7 @@
 
 <div>
     <h1 class="display-4">Список новостей</h1>
-    @* action="~/Home/Create" *@
-    <a href="/admin/news/createNews" role="button" class="btn btn-primary">Добавить новость</a> 
-    @* <ahref='@Url.Action("createNews",  role="button" class="btn btn-primary">Добавить новость</ahref>
-    <a href='@Url.Action("createNews", "Home", new { name = "Тоm", id = 10 }, null)'>Ссылка</a>
-    @Url.Action("Index", "Home") *@
+    <a asp-controller="admin" asp-action="CreateNews" asp-route-id="" role="button" class="btn btn-primary">Добавить новость</a>
     <br />
     <hr />
     <br />
@@ -36,6 +32,7 @@
             {
                 <tr>
                     <td>@item.Title</td>
+                    
                     @if (@item.Text.Length >=30)
                     {
                         <td>
@@ -97,6 +94,7 @@
                     <td>@item.DateUpdate.ToString("yyyy.MM.dd HH:mm"))</td>
                     <td>@item.IsActive</td>
                     <td>@item.IsDelite</td>
+                    <td> <a asp-controller="admin" asp-action="EditNews" asp-route-id="@item.Id" role="button" class="btn btn-primary">edit</a></td>
                     <td><a href="/admin/news/edit/@item.Id">edit</a></td>
                     <td><a href="/admin/news/delete/@item.Id">delete</a></td>
                 </tr>
