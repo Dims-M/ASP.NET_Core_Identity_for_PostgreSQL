@@ -86,7 +86,7 @@ namespace Cofee.Areas.Admin.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Route("/admin/users/block/{id}")]
+       // [Route("/admin/users/block/{id}")]
         public async Task<ActionResult> BlockUsers(string id)
         {
             await _dataUserRepository.BlockUsersAsync(id);
@@ -99,7 +99,7 @@ namespace Cofee.Areas.Admin.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Route("/admin/users/unblock/{id}")]
+       // [Route("/admin/users/unblock/{id}")]
         public async Task<ActionResult> UnBlockUsers(string id)
         {
             await _dataUserRepository.UnBlockUsersAsync(id);
@@ -107,7 +107,7 @@ namespace Cofee.Areas.Admin.Controllers
             return Redirect("/Admin/Users");
         }
 
-        [Route("/admin/news/edit/{id}")]
+        //[Route("/admin/news/edit/{id}")]
         [HttpGet]
         public async Task<ActionResult> EditNews(int id)
         {
@@ -121,7 +121,7 @@ namespace Cofee.Areas.Admin.Controllers
         /// </summary>
         /// <param name="news"></param>
         /// <returns></returns>
-        [Route("/admin/news/edit/{id}")]
+        //[Route("/admin/news/edit/{id}")]
         [HttpPost]
         public async Task<ActionResult> EditNews(News news)
         {
@@ -137,7 +137,7 @@ namespace Cofee.Areas.Admin.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Route("/admin/news/delete/{id}")]
+        //[Route("/admin/news/delete/{id}")]
         [HttpGet]
         public async Task<ActionResult> DeleteNews(int id)
         {

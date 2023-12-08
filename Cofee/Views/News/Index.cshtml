@@ -35,7 +35,20 @@
             {
                 <tr>
                     <td>@item.Title</td>
-                    <td>@item.Text</td>
+                    @if (@item.Text.Length >= 30)
+                    {
+                        <td>
+                            <details>
+                                <summary><b> @item.Text.Substring(0, 20).... </b></summary>
+                                @item.Text
+                            </details>
+                        </td>
+                    }
+                    @if (item.Text.Length <= 20)
+                    {
+                        <td>@item.Text</td>
+                    }
+                  @*   <td>@item.Text</td> *@
                     <td>@item.DatePublication.ToString("yyyy.MM.dd HH:mm")</td>
                    @*  <td>@item.AuthorId</td>
                     <td>@item.Сomments</td>
