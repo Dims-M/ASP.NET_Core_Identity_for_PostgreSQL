@@ -11,11 +11,15 @@ namespace Cofee.Areas.Admin.Controllers
     {
         private readonly NewsRepository _newsRepository;
         private DataUserRepository _dataUserRepository;
+        private readonly IHttpContextAccessor _httpContext;
 
-        public Admin(NewsRepository newsRepository, DataUserRepository dataUserRepository)
+        public Admin(NewsRepository newsRepository,
+            IHttpContextAccessor httpContext,
+            DataUserRepository dataUserRepository)
         {
-            _newsRepository = newsRepository;
+           _newsRepository = newsRepository;
             _dataUserRepository = dataUserRepository;
+            _httpContext = httpContext;
         }
 
         public IActionResult Index()
@@ -31,6 +35,8 @@ namespace Cofee.Areas.Admin.Controllers
         /// <returns></returns>
         public IActionResult News()
         {
+            var user = User.Identity;
+            var test = _httpContext.HttpContext;
             var listNews = _newsRepository.GetNewsAsync().Result;
             return View(listNews);
         }

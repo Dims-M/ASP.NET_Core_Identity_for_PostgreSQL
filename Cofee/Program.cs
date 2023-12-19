@@ -38,6 +38,9 @@ namespace Cofee
                 c.IncludeXmlComments(xmlPath);
             });
 
+            //подключаем IHttpContextAccessor
+            builder.Services.AddHttpContextAccessor();
+
             //Подключаем репозитории
             builder.Services.AddTransient<NewsRepository>(); 
             builder.Services.AddTransient<DataUserRepository>(); 

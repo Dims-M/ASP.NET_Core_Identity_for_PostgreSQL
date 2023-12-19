@@ -55,8 +55,32 @@
                             <span> Новости </span>
                         </a>
                     </li>
+
+                    @{
+                        var userRole = User.IsInRole("Administrator");
+                    }
+                    if(userRole){
+
+                    
                     <li class="side-nav-item">
-                        <a href="/admin/news">News</a>
+                       @*  <a href="/admin/">Админка</a> *@
+                        <a href="/admin/" class="side-nav-link">
+                            <i class="uil-rss"></i>
+                            <span> Админка </span>
+                        </a>
+                    </li>
+
+                    <li class="side-nav-item">
+                        @*  <a href="/admin/">Админка</a> *@
+                        <a href="/admin/news" class="side-nav-link">
+                            <i class="uil-rss"></i>
+                            <span> Все новости </span>
+                        </a>
+                    </li>
+                    }
+
+                    <li class="side-nav-item">
+                       @*  <a href="/admin/news">News</a> *@
                         <a href="/home/" class="side-nav-link">
                             <i class="uil-rss"></i>
                             <span> Публикации </span>

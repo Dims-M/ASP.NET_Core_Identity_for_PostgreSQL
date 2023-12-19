@@ -13,15 +13,20 @@ namespace Cofee.Controllers
         private ApplicationDbContext _applicationDbContext;
         private readonly NewsRepository _newsRepository;
         private readonly ILogger<NewsController> _logger;
+        private readonly HttpContext _httpContext;
 
         /// <summary>
         /// Контролер работы с новостями
         /// </summary>
-        public NewsController(ILogger<NewsController> logger, ApplicationDbContext applicationDbContext, NewsRepository newsRepository)
+        public NewsController(ILogger<NewsController> logger,
+            ApplicationDbContext applicationDbContext,
+            HttpContext httpContext,
+            NewsRepository newsRepository)
         {
             _applicationDbContext = applicationDbContext;
             _newsRepository = newsRepository;
             _logger = logger;
+            _httpContext = httpContext;
         }
        
         public async Task<IActionResult> Index()
