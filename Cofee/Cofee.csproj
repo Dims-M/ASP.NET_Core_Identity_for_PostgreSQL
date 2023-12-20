@@ -35,7 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\APIControllers\" />
     <Folder Include="Data\Migrations\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
