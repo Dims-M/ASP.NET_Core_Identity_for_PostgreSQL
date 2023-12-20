@@ -22,6 +22,9 @@ namespace Cofee
                 options.UseNpgsql(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+            //IHttpClientFactory
+            builder.Services.AddHttpClient();
+
             //указывающий, требуется ли для входа подтвержденная
             builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<IdentityRole>()

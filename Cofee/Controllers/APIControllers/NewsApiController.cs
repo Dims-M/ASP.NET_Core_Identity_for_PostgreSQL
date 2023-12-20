@@ -12,12 +12,12 @@ namespace Cofee.Controllers.APIControllers
     {
         private ApplicationDbContext _applicationDbContext;
         private readonly NewsRepository _newsRepository;
-        private readonly ILogger<NewsController> _logger;
+        private readonly ILogger<NewsApiController> _logger;
         private readonly IHttpContextAccessor _httpContext;
         private readonly IHttpClientFactory _httpClientFactory;
 
 
-        public NewsApiController(ILogger<NewsController> logger,
+        public NewsApiController(ILogger<NewsApiController> logger,
             ApplicationDbContext applicationDbContext,
             IHttpContextAccessor httpContext,
             IHttpClientFactory httpClientFactory,
