@@ -27,6 +27,9 @@ namespace Cofee
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            //проверки работоспособности
+            builder.Services.AddHealthChecks();
+
             builder.Services.AddControllersWithViews();
             builder.Services.AddEndpointsApiExplorer();
             
@@ -60,6 +63,11 @@ namespace Cofee
             }
 
             app.UseHttpsRedirection();
+
+            //https://localhost:7072/health
+            app.UseHealthChecks("/health");
+            app.MapHealthChecks("/health");
+
             app.UseStaticFiles();
 
             app.UseRouting();
